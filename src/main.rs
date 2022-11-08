@@ -29,11 +29,11 @@ async fn main() -> Result<()> {
     println!("balance left: {}", &balance);
 
     let dest_addr = Address::from_str("0x2.....[get address with sepolia eth here]")?;
-
-    let transaction = wallet::create_txn(dest_addr,1)?;
+    let tx_amnt:usize  = 1;
+    let tx = wallet::create_txn(dest_addr,tx_amnt)?;
     let sk = wallet::get_secret_key(&w)?;   //not really needed right now since sk is accessible in the code (yikes!)
-    let transact_hash = wallet::sign_and_send(&web3_con, transaction,&sk).await?;
-    println!("transaction hash: {:?}", transact_hash);
+    let tx_hash = wallet::sign_and_send(&web3_con, tx,&sk).await?;
+    println!("transaction hash: {:?}", tx_hash);
     Ok(())
 
 }
